@@ -1,7 +1,11 @@
 import urllib
 import os
 import logging
-from StringIO import StringIO
+# from StringIO import StringIO
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 
 from PIL import Image
 import requests
@@ -190,7 +194,7 @@ def test():
 
     # cb = CaptchaBuster('./%d_captcha.jpg' % t)
     cb = CaptchaBuster(StringIO(session.get(soup.find('img').get('src')).content))
-    print cb.guess
+    print(cb.guess)
     # print 'Pass %d:' % t, cb.guess
 
 
